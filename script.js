@@ -16,7 +16,8 @@ function displayTodayDate() {
     const day = String(now.getDate()).padStart(2, '0');
     const month = String(now.getMonth() + 1).padStart(2, '0'); // January is 0!
     const year = now.getFullYear();
-    document.getElementById('date').textContent = "Today's Date: " + month + day + year;
+    const formattedDate = month + '/' + day + '/' + year; // Format as mm/dd/yyyy
+    document.getElementById('date').textContent = "Today's Date: " + formattedDate;
 }
 
 setInterval(updateTime, 1000); // Update time every second
