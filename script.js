@@ -1,6 +1,6 @@
 function updateTime() {
     const now = new Date();
-    const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     document.getElementById('clock').textContent = "Current Time: " + timeString;
 }
 
@@ -12,7 +12,11 @@ function resetTasks() {
 document.getElementById('resetTasks').addEventListener('click', resetTasks);
 
 function displayTodayDate() {
-    document.getElementById('date').textContent = "Today's Date: " + new Date().toLocaleDateString();
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const year = now.getFullYear();
+    document.getElementById('date').textContent = "Today's Date: " + month + day + year;
 }
 
 setInterval(updateTime, 1000); // Update time every second
@@ -23,7 +27,7 @@ const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 const timeUntilMidnight = midnight - now;
 setTimeout(resetTasks, timeUntilMidnight);
 
-document.getElementById('resetTasks').addEventListener('change', function() {
+document.getElementById('resetTasks').addEventListener('change', function () {
     if (this.checked) {
         resetTasks();
     }
@@ -70,12 +74,12 @@ tasks.forEach(task => {
         const completionTime = storedTasks[task.id];
         const date = new Date(completionTime);
         const dateString = date.toLocaleDateString();
-        const timeString = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         cell1.innerHTML += ` (Completed on ${dateString} at ${timeString})`;
     }
 
     // Add event listener to store task completion status in local storage
-    document.getElementById(task.id).addEventListener('change', function() {
+    document.getElementById(task.id).addEventListener('change', function () {
         if (this.checked) {
             storedTasks[task.id] = new Date().toISOString(); // Store completion time
         } else {
@@ -87,7 +91,19 @@ tasks.forEach(task => {
 
 displayTodayDate(); // Display today's date
 
-document.getElementById('printButton').addEventListener('click', function() {
-    window.print();
-});
+document.getElementById('printButton').addEventListener('click', function () {
+    // Get today's date
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const year = now.getFullYear();
 
+    // Format the date as mmddyyyy
+    const dateString = month + day + year;
+
+    // Set the filename for the PDF
+    const filename = dateString + '.pdf';
+
+    // Generate the PDF with the specified filename
+    html2pdf().from(document.body).save(filename);
+});
