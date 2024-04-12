@@ -17,7 +17,7 @@ The Daily Routine web page is a simple tool designed to help users organize thei
 4. **Printing Daily Routine:** Click on the "Print Daily Routine" button to open the print dialog and print the daily routine for offline reference.
 
 **Support:**
-For any questions, feedback, or issues, please contact [Ferdous@codeisoft.com](mailto:Ferdous@codeisoft.com).
+For any questions, feedback, or issues, please contact [ferdous@codeisoft.com](mailto:ferdous@codeisoft.com).
 
 **About:**
 This Daily Routine web page is developed by codeisoft. For more information about our products and services, visit [www.codeisoft.com](http://www.codeisoft.com).
