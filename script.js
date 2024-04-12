@@ -65,21 +65,28 @@ tasks.forEach(task => {
     const row = table.insertRow(-1);
     const cell1 = row.insertCell(0);
     const cell2 = row.insertCell(1);
-    cell1.innerHTML = `<input type="checkbox" id="${task.id}">${task.activity}`;
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = task.id;
+    const label = document.createElement('label');
+    label.htmlFor = task.id;
+    label.textContent = task.activity;
+    cell1.appendChild(checkbox);
+    cell1.appendChild(label);
     cell2.textContent = task.time;
 
     // Check if task completion data exists in local storage
     if (storedTasks[task.id]) {
-        document.getElementById(task.id).checked = true;
+        checkbox.checked = true;
         const completionTime = storedTasks[task.id];
         const date = new Date(completionTime);
         const dateString = date.toLocaleDateString();
         const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        cell1.innerHTML += ` (Completed on ${dateString} at ${timeString})`;
+        label.innerHTML = `<del>${task.activity} (Completed on ${dateString} at ${timeString})</del>`;
     }
 
     // Add event listener to store task completion status in local storage
-    document.getElementById(task.id).addEventListener('change', function () {
+    checkbox.addEventListener('change', function () {
         if (this.checked) {
             storedTasks[task.id] = new Date().toISOString(); // Store completion time
         } else {
