@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f3f3f3;
 }
+
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -12,39 +13,48 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 h1 {
     text-align: center;
     font-size: 20px;
 }
+
 .clock {
     text-align: center;
     font-size: 18px;
     margin-bottom: 20px;
 }
-.date{
+
+.date {
     text-align: center;
     font-size: 18px;
     margin-bottom: 20px;
 }
+
 .task {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
+
 .task input[type="checkbox"] {
     margin-right: 10px;
 }
+
 .task label {
     font-size: 15px;
 }
+
 .timeframe {
     font-size: 15px;
     margin-bottom: 20px;
 }
+
 .timeframe table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .timeframe th, .timeframe td {
     padding: 8px;
     text-align: left;
@@ -96,4 +106,44 @@ h1 {
 
 #printButton:hover {
     background-color: #388e3c;
+}
+
+/* Media Queries */
+
+/* Small devices (phones, 576px and up) */
+@media (min-width: 576px) {
+    .container {
+        padding: 20px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .container {
+        max-width: 800px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1000px;
+    }
+}
+
+/* Adjustments for smaller screens */
+.header {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.title h1 {
+    margin-bottom: 10px;
 }
