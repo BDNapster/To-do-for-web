@@ -147,3 +147,9 @@ h1 {
 .title h1 {
     margin-bottom: 10px;
 }
+.task-white {
+    background-color: white;
+}
+.task-grey {
+    background-color: grey;
+}

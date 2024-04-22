@@ -84,14 +84,23 @@ tasks.forEach(task => {
         const dateString = date.toLocaleDateString();
         const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         label.innerHTML = `<del>${task.activity} (Completed on ${dateString} at ${timeString})</del>`;
+        row.style.backgroundColor = 'grey'; // Set background color to grey if task is completed
+    } else {
+        // Set background color based on index
+        const rowBackgroundColor = tasks.indexOf(task) % 2 === 0 ? 'white' : 'grey';
+        row.style.backgroundColor = rowBackgroundColor;
     }
 
-    // Add event listener to store task completion status in local storage
+    // Add event listener to store task completion status in local storage and update UI
     checkbox.addEventListener('change', function () {
+        const rowBackgroundColor = this.checked ? 'grey' : (tasks.indexOf(task) % 2 === 0 ? 'white' : 'grey');
+        row.style.backgroundColor = rowBackgroundColor; // Update row background color
         if (this.checked) {
             storedTasks[task.id] = new Date().toISOString(); // Store completion time
+            label.style.textDecoration = 'line-through'; // Add strikethrough style
         } else {
             delete storedTasks[task.id]; // Remove task completion data if unchecked
+            label.style.textDecoration = 'none'; // Remove strikethrough style
         }
         localStorage.setItem('tasks', JSON.stringify(storedTasks)); // Update local storage
     });
